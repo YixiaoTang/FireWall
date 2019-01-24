@@ -6,6 +6,7 @@ Code Challenge for illumio, build a small firewall with java
 * Rule: Rule class to store direction, protocol, port range and ip address range.
 * FireWall: provide constructor with csv file and one public method accept_packet, which test whether the package can match one specific rule.
 * testFireWall: test cases for FireWall.
+* fw.csv: The test rules for the firewall.
 ### How to test
 Test wilt valid input and invalid input to test corner case. Test cases shown in testFireWall class.
 ### Algorithm And Design
