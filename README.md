@@ -8,7 +8,7 @@ Code Challenge for illumio, build a small firewall with java
 * testFireWall: test cases for FireWall.
 * fw.csv: The test rules for the firewall.
 ### How to test
-Test wilt valid input and invalid input to test corner case. Test cases shown in testFireWall class.
+Test with valid input and invalid input to test corner case. Test cases shown in testFireWall class.
 ### Algorithm And Design
 * Transfer ip address from string to long format in the range[0, 2^32-1]
 * HashMap to store rules, key value is concatenation of direction and protocol. value is ArrayList of rules.
