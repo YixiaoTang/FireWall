@@ -19,3 +19,5 @@ Then use binary search to find the rule with max valid lower bound of port range
 ### Optimizations
 * In this code challenge, I use binary search and hashmap to accelerate the matching speed. The next step to optimize is compress the firewall rules, because the large overlapping parts of rules is the main reason inducing high time and space complexity.
 * One of the available Algorithm shown in this paper: https://www.cse.msu.edu/~alexliu/publications/FirewallCompressor/FirewallCompressor.pdf
+### Team
+I am interested in platform team.
