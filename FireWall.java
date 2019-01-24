@@ -19,6 +19,7 @@ public class FireWall {
 			rulesMap.put(key, rules);
 		}
 		for (Map.Entry<String, ArrayList<Rule>> entry : rulesMap.entrySet()) {
+			//sort rules by the lower bound of port range.
 			Collections.sort(entry.getValue());
 		}
 	}
@@ -28,6 +29,15 @@ public class FireWall {
 		return binarySearch(direction,protocol,port,ip);
 	}
 	
+	/**
+	 * Rules in ArrayList of rulesMap sorted by lower bound of port of rule.
+	 * When a new package come in, test it with direction and protocol first. 
+	 * If no rule match the direction and protocol, return false. 
+	 * Then use binary search to find the rule with max valid lower bound of port range.
+	 * If rule match, return true.
+	 * Otherwise try to match the previous one. 
+	 * Until no more rule left or port is smaller than the lower bound of port range.
+	 */
 	private boolean binarySearch(String direction,String protocol,int port,long ip) {
 		String key = direction+protocol;
 		ArrayList<Rule> rules = rulesMap.getOrDefault(key, new ArrayList<Rule>());
@@ -39,12 +49,16 @@ public class FireWall {
 			int left = 0;
 			int mid = right/2;
 			while (left<right) {
-				if(left==mid&&rules.get(left).getPort()[0]>port)
+				if(left==mid&&rules.get(left).getPort()[0]>port) {
 					return false;
-				if(mid==right)
+				}
+				//when mid == right, there could be no mid+1 in array
+				if(mid==right) {
 					break;
-				if(rules.get(mid).getPort()[0]<=port&&rules.get(mid+1).getPort()[0]>port)
+				}
+				if(rules.get(mid).getPort()[0]<=port&&rules.get(mid+1).getPort()[0]>port) {
 					break;
+				}
 				if(rules.get(mid).getPort()[0]>port) {
 					right = mid;
 					mid = left + (mid - left)/2;
